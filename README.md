@@ -45,14 +45,16 @@ Here is how:
 >
 > cmake -DOPENCV_EXTRA_MODULES_PATH=/Users/alexandroskarargyris/Downloads/opencv_contrib/modules -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_TOOLCHAIN_FILE=../android/android.toolchain.cmake $@ ../..
 
-where ``-DOPENCV_EXTRA_MODULES_PATH=` points to where the OpenCV external modules reside. So replace it with your own path. Save and exit your text editor.
+where ``-DOPENCV_EXTRA_MODULES_PATH=`` points to where the OpenCV external modules reside. So replace it with your own path. Save and exit your text editor.
 
 - Open terminal:
+
 > $ cd /Users/alexandroskarargyris/Downloads/opencv/platforms/
 
 > $ sh ./scripts/cmake_android_arm.sh
 
 - After making is done then: 
+
 > $ cd build_android_arm
 
 > $ make install
