@@ -1,5 +1,5 @@
 # Caffe OpenCV Android App
-This is an example of an Android app that uses OpenCV DNN module to load a Caffe model and predict an image.
+This is an example of an Android app that uses OpenCV DNN module to load a Caffe model and predict an image. It is basically the OpenCV tutorial for DNN: http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0
 
 ## Prerequisites
 
@@ -49,10 +49,12 @@ where ``-DOPENCV_EXTRA_MODULES_PATH=` points to where the OpenCV external module
 
 - Open terminal:
 > $ cd /Users/alexandroskarargyris/Downloads/opencv/platforms/
+
 > $ sh ./scripts/cmake_android_arm.sh
 
 - After making is done then: 
 > $ cd build_android_arm
+
 > $ make install
 
 This process will install the Android OpenCV SDK under ``/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install`` folder.
