@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/alexandroskarargyris/AndroidStudioProjects/MyApplication/opencv_java/src/main/res"><file path="/Users/alexandroskarargyris/AndroidStudioProjects/MyApplication/opencv_java/src/main/res/values/attrs.xml" qualifiers=""><declare-styleable name="CameraBridgeViewBase">
+       <attr format="boolean" name="show_fps"/>
+       <attr format="integer" name="camera_id">
+          <enum name="any" value="-1"/>
+          <enum name="back" value="99"/>
+          <enum name="front" value="98"/>
+       </attr>
+    </declare-styleable></file></source><source path="/Users/alexandroskarargyris/AndroidStudioProjects/MyApplication/opencv_java/build/generated/res/rs/release"/><source path="/Users/alexandroskarargyris/AndroidStudioProjects/MyApplication/opencv_java/build/generated/res/resValues/release"/></dataSet><dataSet config="release"><source path="/Users/alexandroskarargyris/AndroidStudioProjects/MyApplication/opencv_java/src/release/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CameraBridgeViewBase"><attr format="boolean" name="show_fps"/><attr format="integer" name="camera_id"><enum name="any" value="-1"/><enum name="back" value="99"/><enum name="front" value="98"/></attr></declare-styleable></configuration></mergedItems></merger>
