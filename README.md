@@ -23,6 +23,7 @@ This is an example of an Android app that uses OpenCV DNN module to load a Caffe
 **IMPORTANT: MAKE SURE THAT YOUR "Android NDK" IS ON YOUR `$PATH` SO THAT YOU CAN USE IT FROM ANYWHERE**
 
 
+
 ###Build OpenCV with extra modules for Android
 Unfortunately the Deep Neural Network (DNN) module for OpenCV is not part of the main OpenCV distribution yet.
 
