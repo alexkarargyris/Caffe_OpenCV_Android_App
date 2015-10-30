@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Caffe opencv android app by alexkarargyris</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Caffe opencv android app</h1>
+      <h2 class="project-tagline">This is an example of an Android app that uses OpenCV DNN module to load a Caffe model and predict an image. It implements the tutorial from http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0</h2>
+      <a href="https://github.com/alexkarargyris/Caffe_OpenCV_Android_App" class="btn">View on GitHub</a>
+      <a href="https://github.com/alexkarargyris/Caffe_OpenCV_Android_App/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alexkarargyris/Caffe_OpenCV_Android_App/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="caffe-opencv-android-app" class="anchor" href="#caffe-opencv-android-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caffe OpenCV Android App</h1>
+
+<p>This is an example of an Android app that uses OpenCV DNN module to load a Caffe model and predict an image. It is basically the OpenCV tutorial for DNN: <a href="http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0">http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0</a></p>
+
+<h2>
+<a id="a-prerequisites" class="anchor" href="#a-prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>A. Prerequisites</h2>
+
+<h3>
+<a id="opencv" class="anchor" href="#opencv" aria-hidden="true"><span class="octicon octicon-link"></span></a>OpenCV</h3>
+
+<ul>
+<li>Download OpenCV source code from here: <a href="https://github.com/Itseez/opencv">https://github.com/Itseez/opencv</a>
+</li>
+<li>Download OpenCV external modules from here: <a href="https://github.com/Itseez/opencv_contrib">https://github.com/Itseez/opencv_contrib</a>
+</li>
+</ul>
+
+<h3>
+<a id="android-studio" class="anchor" href="#android-studio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android Studio</h3>
+
+<ul>
+<li>Download &amp; install Android Studio:  <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a> </li>
+</ul>
+
+<p>This will install Android SDK.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<h3>
+<a id="1-install-ndk-bundle" class="anchor" href="#1-install-ndk-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Install NDK Bundle</h3>
+
+<ul>
+<li>Open Android Studio and navigate Tools-&gt;Android-&gt;SDK Manager. Choose "SDK Tools" then tick "Android NDK". Finally "Apply" and close. You may need to restart. </li>
+</ul>
+
+<h3>
+<a id="2-install-android-ndk" class="anchor" href="#2-install-android-ndk" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Install Android NDK</h3>
+
+<ul>
+<li>Download and install "Android NDK". Follow instruction here: <a href="http://developer.android.com/ndk/downloads/index.html">http://developer.android.com/ndk/downloads/index.html</a> </li>
+</ul>
+
+<p><strong>IMPORTANT: MAKE SURE THAT YOUR "Android NDK" IS ON YOUR <code>$PATH</code> SO THAT YOU CAN USE IT FROM ANYWHERE 
+(e.g. bash_profile on Mac: <a href="https://github.com/9miao/CrossApp/wiki/Android-Development-Environment-Configuration-in-Mac-OS-X#2bash_profile-file-configuration">https://github.com/9miao/CrossApp/wiki/Android-Development-Environment-Configuration-in-Mac-OS-X#2bash_profile-file-configuration</a>)</strong></p>
+
+<h3>
+<a id="3-build-android-opencv-sdk-with-extra-modules-for-android" class="anchor" href="#3-build-android-opencv-sdk-with-extra-modules-for-android" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Build Android OpenCV SDK with extra modules for Android</h3>
+
+<p>Unfortunately the Deep Neural Network (DNN) module for OpenCV is not part of the main OpenCV distribution yet.</p>
+
+<p>It resides in the extra modules. So we have to build OpenCV along extra modules. For this we need to build them together.</p>
+
+<p>Here is how:</p>
+
+<ul>
+<li>Open your file explorer (e.g. Finder on Mac) and navigate to <code>/Users/alexandroskarargyris/Downloads/opencv/platforms/scripts</code>. Replace with your own path.</li>
+<li>Open <code>cmake_android_arm.sh</code> with a text editor (i.e. Textedit on Mac)</li>
+<li>Edit it to look like this:</li>
+</ul>
+
+<blockquote>
+<h1>
+<a id="binsh" class="anchor" href="#binsh" aria-hidden="true"><span class="octicon octicon-link"></span></a>!/bin/sh</h1>
+
+<p>cd <code>dirname $0</code>/..</p>
+
+<p>mkdir -p build_android_arm
+cd build_android_arm</p>
+
+<p>cmake -DOPENCV_EXTRA_MODULES_PATH=/Users/alexandroskarargyris/Downloads/opencv_contrib/modules -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_TOOLCHAIN_FILE=../android/android.toolchain.cmake $@ ../..</p>
+</blockquote>
+
+<p>where <code>-DOPENCV_EXTRA_MODULES_PATH=</code> points to where the OpenCV external modules reside. So replace it with your own path. Save and exit your text editor.</p>
+
+<ul>
+<li>Open terminal:</li>
+</ul>
+
+<blockquote>
+<p>$ cd /Users/alexandroskarargyris/Downloads/opencv/platforms/</p>
+
+<p>$ sh ./scripts/cmake_android_arm.sh</p>
+</blockquote>
+
+<ul>
+<li>After making is finished then run: </li>
+</ul>
+
+<blockquote>
+<p>$ cd build_android_arm</p>
+
+<p>$ make install</p>
+</blockquote>
+
+<p>This process will install the Android OpenCV SDK under <code>/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install</code> folder. That concludes the most important part: building the OpenCV Android SDK with extra modules (e.g. DNN) from source code. </p>
+
+<h2>
+<a id="b-app-development" class="anchor" href="#b-app-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>B. App development</h2>
+
+<ul>
+<li>Open Android Studio</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alexkarargyris/Caffe_OpenCV_Android_App">Caffe opencv android app</a> is maintained by <a href="https://github.com/alexkarargyris">alexkarargyris</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
