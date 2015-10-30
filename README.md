@@ -16,6 +16,7 @@ This will install Android SDK.
 
 ###1. Install NDK Bundle
 - Open Android Studio and navigate Tools->Android->SDK Manager. Choose "SDK Tools" then tick "Android NDK". Finally "Apply" and close. You may need to restart. 
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/NDK.png?raw=true "Optional Title")
 
 
 ###2. Install Android NDK
@@ -60,9 +61,27 @@ where ``-DOPENCV_EXTRA_MODULES_PATH=`` points to where the OpenCV external modul
 
 > $ make install
 
-This process will install the Android OpenCV SDK under ``/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install`` folder. That concludes the most important part: building the OpenCV Android SDK with extra modules (e.g. DNN) from source code. 
+This process will install the Android OpenCV SDK under ``/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install`` folder. That concludes the most important part: building the Android OpenCV SDK with extra modules (e.g. DNN) from source code. 
 
 
-##B. App development
+##B. App Development
 
 - Open Android Studio
+
+- Start a New Project (e.g. MyApplication)
+
+- In the project structure navigate to app->src->main->java->myapplication and add a new class (e.g. NativeClass)
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/class.png?raw=true "Optional Title")
+
+
+- Open a terminal and run the following command:
+
+<screenshot>
+
+This command basically creates the native C/C++ files to allow access to C/C++ OpenCV calls.
+
+- Back to Android Studio 
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/native_header.png?raw=true "Optional Title")
+
