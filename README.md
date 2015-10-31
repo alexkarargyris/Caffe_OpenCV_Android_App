@@ -15,7 +15,7 @@ This will install Android SDK.
 ##Requirements
 
 ###1. Install NDK Bundle
-- Open Android Studio and navigate Tools->Android->SDK Manager. Choose "SDK Tools" then tick "Android NDK". Finally "Apply" and close. You may need to restart. 
+- Open Android Studio and navigate Tools->Android->SDK Manager. Choose "SDK Tools" then tick "Android NDK". Finally "Apply" and hit "OK" to close. You may need to restart Android Studio. 
 ![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/NDK.png?raw=true "Optional Title")
 
 
@@ -72,9 +72,39 @@ This process will install the Android OpenCV SDK under ``/Users/alexandroskararg
 
 For this part I used the wonderful instructions from https://github.com/quanhua92/NDK_OpenCV_AndroidStudio
 
+
+###1. Create OpenCV Gradle Project
+
 - Open Android Studio
 
-- Start a New Project (e.g. MyApplication)
+- Import a Project
+
+- Navigate to your OpenCV Android SDK location (see A.3 step above). My SDK's location is at `/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install`. Find `SDK/java` and import it
+
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/project_opencv.png?raw=true "Optional Title")
+
+- Select the name (e.g. OpenCV-Java)where you want to save the new project and don't forget to build it
+
+- That's it. Close Project.
+
+###Create our app (at last!)
+
+- Open Android Studio
+
+- Create a new project (i.e MyApplication)
+
+- Let's import OpenCV and its libraries: Go `File->New->Import Module`. Click `...` in the new window and navigate to the location of your OpenCV Java project from step B.1 above.
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/import_opencv1.png?raw=true "Optional Title")
+
+Then type in module name: ``opencv_java``:
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/import_opencv2.png?raw=true "Optional Title")
+
+This will import OpenCV Java to our project. Finally go to `opencv-java->build.gradle` to configure the file to look like below:
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/import_opencv3.png?raw=true "Optional Title")
 
 - In the project structure navigate to app->src->main->java->myapplication and add a new class (e.g. NativeClass) with the following method:
 
@@ -92,7 +122,7 @@ For this part I used the wonderful instructions from https://github.com/quanhua9
 ``javah -d jni -classpath ../../build/intermediates/classes/debug/ com.example.alexandroskarargyris.myapplication.NativeClass``
 
 
-This command basically creates the headr file for native C/C++ to allow access to C/C++ OpenCV calls.
+This command basically creates the header file for native C/C++ to allow access to C/C++ OpenCV calls.
 
 - Back to Android Studio you will find a new folder ``jni`` as well as the the header:  ``com_example_alexandroskarargyris_myapplication_NativeClass.h``. Open it and you will see the following method:
 <pre>
@@ -105,3 +135,4 @@ JNIEXPORT jstring JNICALL Java_com_example_alexandroskarargyris_myapplication_Na
 This is the C/C++ method that ``getStringFromNative()`` in ``NativeClass`` is going to call. So let's create a .cpp to have our C++ code for this method.
 
 
+##C. Alternative (fast) way to run this project
