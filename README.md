@@ -88,7 +88,7 @@ For this part I used the wonderful instructions from https://github.com/quanhua9
 
 - That's it. Close Project.
 
-###Create our app (at last!)
+###2. Create our app (at last!)
 
 - Open Android Studio
 
@@ -105,6 +105,10 @@ Then type in module name: ``opencv_java``:
 This will import OpenCV Java to our project. Finally go to `opencv-java->build.gradle` to configure the file to look like below:
 
 ![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/import_opencv3.png?raw=true "Optional Title")
+
+- Add the OpenCV libraries by draggin & dropping the `libs` folder (i.e. `/Users/alexandroskarargyris/Downloads/opencv/platforms/build_android_arm/install/sdk/native/`) to your project. Don't forget to rename to `jniLibs`. See figure below:
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/opencv_libraries.png?raw=true "Optional Title")
 
 - In the project structure navigate to app->src->main->java->myapplication and add a new class (e.g. NativeClass) with the following method:
 
@@ -132,7 +136,46 @@ JNIEXPORT jstring JNICALL Java_com_example_alexandroskarargyris_myapplication_Na
 
 ![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/native_header.png?raw=true "Optional Title")
 
-This is the C/C++ method that ``getStringFromNative()`` in ``NativeClass`` is going to call. So let's create a .cpp to have our C++ code for this method.
+This is the C/C++ method that ``getStringFromNative()`` in ``NativeClass`` is going to call. So let's create a .cpp to have our C++ code for this method. For simplicity please go ahead and copy the code from the repository: https://github.com/alexkarargyris/Caffe_OpenCV_Android_App/blob/master/app/src/main/jni/com_example_alexandroskarargyris_myapplication_NativeClass.cpp This is the main code for runnning the DNN using OpenCV. You will notice that I have left many C++ calls (e.g. `std::cerr <<`) from the original tutorial code. The reason is to show how easy it is to migrate it to your Android project.
+
+- Add `Android.mk` file under `jni` folder and modify it to look like the figure below:
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/AndroidMk.png?raw=true "Optional Title")
+
+It basically tells the app where to look for OpenCV, the name of the module (i.e. MyLib)
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/ApplicationMk.png?raw=true "Optional Title")
+
+- Add `Application.mk` file under `jni` folder and modify it to look like the figure below:
+
+
+- Modify the app's `build.gradle` to look like this: 
+
+![Alt text](https://dl.dropboxusercontent.com/u/7591304/OpenCV%20Tutorial/build_gradle.png?raw=true "Optional Title")
+
+This tells the app where to look for NDK, the JNI files, the configuration files (i.e. Android.mk) etc. It is very important.
+
+- Now let's go to `MainActivity.java` tell it load the OpenCV library and our JNI library (e.g. MyLib) by adding the following:
+
+<pre>
+    static {
+        System.loadLibrary("MyLib");
+        System.loadLibrary("opencv_java3");
+    }
+</pre>
+
+Also in the figure below you can see how I call the `tv.setText(NativeClass.getStringFromNative());` which in return runs `NativeClass` which in return runs `Java_com_example_alexandroskarargyris_myapplication_NativeClass_getStringFromNative` from `com_example_alexandroskarargyris_myapplication_NativeClass.cpp`
+
+This will print the classifier's predicted class name in a text view I setup in `activity_main.xml`. But I suppose you know how to do this.
+
+- Finally you need to load up the Caffe models to your device (virtual or real). You can download them from the tutorial's page: http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0
+
 
 
 ##C. Alternative (fast) way to run this project
+
+If you reach so far and played with the above code then you learned quite a lot things. Regardless if your efforts were unsuccessful. The way to cheat this tutorial is to import it directly form Github to your Android Studio. To run it you need to have:
+
+1. Build OpenCV with extra modules as described in Requirements
+2. Install NDK as described in Requirements
+3. Modify `Android.mk` , `Application.mk`, `build.gradle` with your own file paths (see B.2)
