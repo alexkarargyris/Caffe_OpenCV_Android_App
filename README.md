@@ -170,7 +170,7 @@ Also in the figure below you can see how I call the `tv.setText(NativeClass.getS
 
 This will print the classifier's predicted class name in a text view I setup in `activity_main.xml`. But I suppose you know how to do this.
 
-- Finally you need to load up the Caffe models to your device (virtual or real). You can download them from the tutorial's page: http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0
+- Finally you need to load up the Caffe models to your device (virtual or real). You can download them from the tutorial's page: http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0 . I placed an image of a space shuttle in the app's resources to let the classifier predict it.
 
 
 
