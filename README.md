@@ -1,6 +1,8 @@
 # Caffe OpenCV Android App
 This is an example of an Android app that uses OpenCV DNN module to load a Caffe model and predict an image. It is basically the OpenCV tutorial for DNN: http://docs.opencv.org/master/d5/de7/tutorial_dnn_googlenet.html#gsc.tab=0
 
+NOTE: Jump to the end of this tutorial (https://github.com/alexkarargyris/Caffe_OpenCV_Android_App#c-alternative-fast-way-to-run-this-project) to kick off quickly!
+
 ##A. Prerequisites
 
 ### OpenCV
