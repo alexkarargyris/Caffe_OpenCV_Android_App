@@ -57,7 +57,7 @@ JNIEXPORT jstring JNICALL Java_com_example_alexandroskarargyris_myapplication_Na
 
     String modelTxt = "/sdcard/android-opencv/bvlc_googlenet.prototxt.txt";
     String modelBin = "/sdcard/android-opencv/bvlc_googlenet.caffemodel";
-    String imageFile = "/sdcard/android-opencv/space_shuttle.jpg";
+    String imageFile = "/data/data/com.example.alexandroskarargyris.myapplication/cache/image.jpg";
 
 
 
